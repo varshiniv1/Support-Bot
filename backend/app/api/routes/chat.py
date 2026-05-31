@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import ChatRequest, ChatResponse
 from app.services.hybrid_search import search
-from app.services.llm import answer
+from app.services.llm import answer_with_follow_ups
 
 router = APIRouter()
 
@@ -20,5 +20,7 @@ def chat(body: ChatRequest):
             follow_up_questions=[],
         )
 
-    answer_text = answer(body.question, chunks, body.conversation_history)
-    return ChatResponse(answer=answer_text, sources=chunks, follow_up_questions=[])
+    answer_text, follow_ups = answer_with_follow_ups(
+        body.question, chunks, body.conversation_history
+    )
+    return ChatResponse(answer=answer_text, sources=chunks, follow_up_questions=follow_ups)
