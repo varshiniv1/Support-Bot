@@ -1,19 +1,19 @@
 from functools import lru_cache
 from typing import List
 
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 
-from app.config import get_settings
+_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 @lru_cache()
-def _model() -> SentenceTransformer:
-    return SentenceTransformer(get_settings().embedding_model)
+def _model() -> TextEmbedding:
+    return TextEmbedding(model_name=_MODEL_NAME)
 
 
 def embed(texts: List[str]) -> List[List[float]]:
-    """Embed a batch of texts. Returns L2-normalised vectors (cosine-ready)."""
-    return _model().encode(texts, normalize_embeddings=True).tolist()
+    """Embed a batch of texts. Vectors are L2-normalised (cosine-ready)."""
+    return [v.tolist() for v in _model().embed(texts)]
 
 
 def embed_one(text: str) -> List[float]:
