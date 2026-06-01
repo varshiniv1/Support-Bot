@@ -250,12 +250,6 @@ The app is deployed on a fully free stack:
 
 ---
 
-## Resume Line
-
-> *Built a multi-format AI knowledge base chatbot with a hybrid ingestion pipeline supporting markdown, PDF, and live URL scraping, combined with 70/30 semantic + BM25 keyword search using pgvector and Supabase full-text search, and an LLM-powered follow-up suggestion system using Groq's free inference API.*
-
----
-
 ## License
 
 MIT
