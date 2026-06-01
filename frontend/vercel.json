@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://support-bot-api.onrender.com/api/:path*"
+      "destination": "https://support-bot-o83e.onrender.com/api/:path*"
     }
   ]
 }
